@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/todo/Todo.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/todo/Todo.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { useState } from 'react';
+import EditTodo from '../editTodo/EditTodo';
+
+/**
+ * Todo component
+ */
+const Todo = ({todo, isEdit, handleDelete, toggleCompleted, handleEdit, setIdTodoEdit}) => {
+    const [wrap, setWrap] = useState(true);
+
+    if(isEdit){
+        return(
+            &lt;EditTodo todo={todo} setEdit={setIdTodoEdit} handleEdit={handleEdit} />
+        )
+        
+    }
+    
+    return(
+        &lt;div className={todo.completed ? 'todo todo__green' : 'todo'} onClick={() => setWrap(!wrap)}>
+            &lt;div className='todo__wraper' >
+                &lt;h3 className="todo__title">{todo.title}&lt;/h3> 
+                &lt;div className="todo__date">{todo.date !== '' ? `Дата завершения ${todo.date}` : 'Дата завершения не указана'}&lt;/div>
+                &lt;div className="todo__action">
+                    &lt;div className={todo.completed ? 'todo__completed' : ''} onClick={e => toggleCompleted(todo)}>
+                        &lt;svg xmlns="http://www.w3.org/2000/svg" height="48" width="48">&lt;path d="M24 44q-4.25 0-7.9-1.525-3.65-1.525-6.35-4.225-2.7-2.7-4.225-6.35Q4 28.25 4 24q0-4.2 1.525-7.85Q7.05 12.5 9.75 9.8q2.7-2.7 6.35-4.25Q19.75 4 24 4q3.75 0 7 1.2t5.85 3.3l-2.15 2.15q-2.2-1.75-4.9-2.7Q27.1 7 24 7q-7.25 0-12.125 4.875T7 24q0 7.25 4.875 12.125T24 41q7.25 0 12.125-4.875T41 24q0-1.5-.225-2.925-.225-1.425-.675-2.775l2.3-2.3q.8 1.85 1.2 3.85.4 2 .4 4.15 0 4.25-1.55 7.9-1.55 3.65-4.25 6.35-2.7 2.7-6.35 4.225Q28.2 44 24 44Zm-2.95-10.9-8.25-8.3 2.25-2.25 6 6 20.7-20.7 2.3 2.25Z"/>&lt;/svg>
+                    &lt;/div>
+                    &lt;div onClick={() => setIdTodoEdit(todo.id)} >
+                        &lt;svg xmlns="http://www.w3.org/2000/svg" height="48" width="48">&lt;path d="M9 47.4q-1.2 0-2.1-.9-.9-.9-.9-2.1v-30q0-1.2.9-2.1.9-.9 2.1-.9h20.25l-3 3H9v30h30V27l3-3v20.4q0 1.2-.9 2.1-.9.9-2.1.9Zm15-18Zm9.1-17.6 2.15 2.1L21 28.1v4.3h4.25l14.3-14.3 2.1 2.1L26.5 35.4H18v-8.5Zm8.55 8.4-8.55-8.4 5-5q.85-.85 2.125-.85t2.125.9l4.2 4.25q.85.9.85 2.125t-.9 2.075Z"/>&lt;/svg>
+                    &lt;/div>
+                    &lt;div className='todo__delete' onClick={e => handleDelete(todo)}>
+                        &lt;svg xmlns="http://www.w3.org/2000/svg" height="48" width="48">&lt;path d="M13.05 42q-1.25 0-2.125-.875T10.05 39V10.5H8v-3h9.4V6h13.2v1.5H40v3h-2.05V39q0 1.2-.9 2.1-.9.9-2.1.9Zm21.9-31.5h-21.9V39h21.9Zm-16.6 24.2h3V14.75h-3Zm8.3 0h3V14.75h-3Zm-13.6-24.2V39Z"/>&lt;/svg>
+                    &lt;/div>
+                    &lt;div onClick={() => setWrap(!wrap)} className='todo__arrow' title={wrap ? 'Раскрыть' : 'Свернуть'}>
+                        {
+                            wrap ? 
+                            &lt;svg xmlns="http://www.w3.org/2000/svg" height="24" width="24">&lt;path d="m12 15.725-6.3-6.3 1.775-1.75L12 12.2l4.525-4.525 1.775 1.75Z"/>&lt;/svg> :
+                            &lt;svg xmlns="http://www.w3.org/2000/svg" height="24" width="24">&lt;path d="M7.475 15.725 5.7 13.975l6.3-6.3 6.3 6.3-1.775 1.75L12 11.2Z"/>&lt;/svg>
+                        }
+                    &lt;/div>
+                &lt;/div>
+            &lt;/div>
+            {
+                !wrap &amp;&amp;
+                &lt;div className='todo__text-todo'>
+                    &lt;div>
+                        &lt;h4>Описание задачи:&lt;/h4>
+                        &lt;p>{todo.text}&lt;/p>
+                    &lt;/div>
+                    &lt;div>
+                        &lt;h4>Прикреплённый файл:&lt;/h4>
+                        {
+                            todo.file !== '' &amp;&amp; &lt;a href={todo.href} download="" target="_blank">{todo.file}&lt;/a>
+                        }
+                    &lt;/div>
+                &lt;/div>
+            }   
+        &lt;/div>
+    )
+}
+
+export default Todo;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AddTodo">AddTodo</a></li><li><a href="global.html#App">App</a></li><li><a href="global.html#EditTodo">EditTodo</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#InputFile">InputFile</a></li><li><a href="global.html#Todo">Todo</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Wed Nov 23 2022 13:43:52 GMT+0500 (Екатеринбург, стандартное время)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
