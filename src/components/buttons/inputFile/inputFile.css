@@ -1,0 +1,52 @@
+.field{
+    position: relative;
+    width: 250px;
+    text-align: center;
+  }
+
+  .field__file-wrapper{
+    /* width: 250px; */
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .field__file-fake {
+    flex-grow: 1;
+    background-color: white;
+    margin: 0px;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    border: 1px solid #707070;
+    border-radius: 3px 0 0 3px;
+    border-right: none;
+  }
+   
+  .field__file-button {
+    min-width: 80px;
+    background-color: #f6f6f7cc;
+    color: rgb(11, 10, 10);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #707070;
+    border-radius: 0 3px 3px 0;
+    cursor: pointer;
+    transition: 0.1s;
+  }
+
+  .field__file-button:hover{
+    background-color: #ecf1f9b9;
+    border-color: rgb(53, 52, 52);
+  }
+
+  .field input[name='file']{
+    width: 80px;
+    right: 0px;
+    opacity: 0;
+    display: none;
+    position: absolute;
+  }

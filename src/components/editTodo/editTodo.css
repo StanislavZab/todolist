@@ -1,0 +1,30 @@
+
+
+  .todo__wrap-edit{
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    padding: 30px;
+    background-color: rgb(202, 202, 202);
+  }
+  
+  .todo__div{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .todo__wrap-file{
+    display: flex;
+  }
+
+  input[name='edit']{
+    width: 500px;
+  }
+  
+  textarea[name='edit']{
+    width: 500px;
+    height: 200px;
+    resize: none; 
+  }

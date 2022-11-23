@@ -1,0 +1,37 @@
+.add-todo{
+    display: flex;
+    flex-direction: column;
+    align-items: space-around;
+    justify-content: space-around;
+    width: 800px;
+    border-bottom: 2px solid black;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+
+.add-todo__top-row{
+  display: flex;
+  justify-content: space-between;
+}
+
+.add-todo__top-row input[name='title']{
+  width: 400px;
+}
+
+.add-todo__bottom-row{
+  display: flex;
+  justify-content: space-between;
+}
+
+.add-todo__bottom-row textarea{
+  width: 600px;
+  height: 60px;
+  resize: none;
+  margin-top: 10px;
+}
+
+.add-todo__bottom-row input{
+  margin-top: 30px;
+  height: 30px;
+}
+
